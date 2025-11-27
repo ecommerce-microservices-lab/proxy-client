@@ -45,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// User Resource
 				.antMatchers(HttpMethod.POST, "/api/users").permitAll()
 				.antMatchers(HttpMethod.GET, "/api/users").hasRole(RoleBasedAuthority.ROLE_ADMIN.getRole())
+				.antMatchers("/api/actuator/togglz/**").hasRole(RoleBasedAuthority.ROLE_ADMIN.getRole())
 				.antMatchers(HttpMethod.GET, "/api/users/username/*").hasRole(RoleBasedAuthority.ROLE_ADMIN.getRole())
 
 				.antMatchers(HttpMethod.GET, "/api/users/*")
