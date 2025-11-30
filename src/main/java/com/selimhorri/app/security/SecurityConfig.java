@@ -12,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 import com.selimhorri.app.business.user.model.RoleBasedAuthority;
 import com.selimhorri.app.config.filter.JwtRequestFilter;
@@ -26,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private final UserDetailsService userDetailsService;
 	private final PasswordEncoder passwordEncoder;
 	private final JwtRequestFilter jwtRequestFilter;
+	private final CorsConfigurationSource corsConfigurationSource;
 
 	@Override
 	protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
@@ -35,7 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
-		http.cors().disable()
+		http.cors().configurationSource(this.corsConfigurationSource)
+				.and()
 				.csrf().disable()
 				.authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
