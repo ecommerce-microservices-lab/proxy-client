@@ -188,6 +188,7 @@
 						<exclude>**/toString</exclude>
 						<exclude>**/hashCode</exclude>
 						<exclude>**/equals</exclude>
+						<exclude>**/business/auth/util/**</exclude>
 					</excludes>
 				</configuration>
 				<executions>
@@ -212,6 +213,7 @@
 								<exclude>**/model/**</exclude>
 								<exclude>**/exception/**</exclude>
 								<exclude>**/domain/**</exclude>
+								<exclude>**/business/auth/util/**</exclude>
 							</excludes>
 						</configuration>
 					</execution>
